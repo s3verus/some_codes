@@ -1,4 +1,9 @@
-inpu = input("input: ")
+import timeit
+
+testcode = '''
+inpu = """
+cate, cat, bat, bate, catayon
+"""
 
 lists = inpu.split(", ")[::-1]
 maxim = max(lists, key=len)
@@ -9,4 +14,7 @@ for item in lists:
             lists.remove(maxim)
             maxim = max(lists, key=len) 
             break
-print(maxim)
+# print(maxim)
+'''
+
+print(timeit.timeit(stmt=testcode))
