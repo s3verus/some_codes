@@ -26,10 +26,14 @@ fn main() {
             if bad_guys.contains(&maxim[iner_count..iner_count+1]) {
                 println!("maxim is: {}", maxim);
                 println!("{:#?}", input_vec);
-                input_vec.remove(vec_index); // wrong index!
+                // find index of maxim and remove
+                let index = input_vec.iter().position(|x| *x == maxim).unwrap();
+                input_vec.remove(index);
+
                 maxim = my_longest::maxim(&input_vec);
                 println!("maxim now is: {}", maxim);
                 println!("{:#?}", input_vec);
+                // vec_index = 0;
                 break 'jump;
             }
             iner_count += 1;
