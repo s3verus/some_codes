@@ -18,34 +18,21 @@ fn main() {
     let bad_guys = String::from("cgijklmnopqsuvwxz");
     let mut vec_index = 0;
     let mut iner_count = 0;
+    let len = input_vec.len();
 
-    'jump: while vec_index < input_vec.len() {
-        println!("{:#?}", input_vec);
-        println!("index is: {}", vec_index);
+    while vec_index < len {
         while iner_count < maxim.chars().count() {
             if bad_guys.contains(&maxim[iner_count..iner_count+1]) {
-                println!("maxim is: {}", maxim);
-                println!("{:#?}", input_vec);
                 // find index of maxim and remove
                 let index = input_vec.iter().position(|x| *x == maxim).unwrap();
                 input_vec.remove(index);
-
                 maxim = my_longest::maxim(&input_vec);
-                println!("maxim now is: {}", maxim);
-                println!("{:#?}", input_vec);
-                // vec_index = 0;
-                break 'jump;
+                break;
             }
             iner_count += 1;
         }
-        vec_index += 1;  
+        vec_index += 1;
+
     }
-
-//    println!("{:#?}", input_vec);
     println!("{}", maxim);
-
-//    let filtered_items = input_vec
-//        .filter(|item| !item.contains("cgijklmnopqsuvwxz"));
-//    println!("{:#?}", filtered_items);
-
 }
