@@ -6,6 +6,7 @@ mod work_with_vec {
 //        None      => "Vector is empty",
 //    };
         pub fn maxim<'a>(input_vec: &'a Vec<&str>) -> &'a str {
+            // get vector of &str and return &str with maximum len
             let mut maxim = "";
             let mut maxim_len = 0;
             for item in input_vec {
@@ -21,7 +22,7 @@ mod work_with_vec {
 
 use crate::work_with_vec::iter_items;
 
-pub fn longest_valid_item(mut input_vec: Vec<&str>) -> &str {
+pub fn longest_valid_item(mut input_vec: Vec<&str>) -> String {
     let mut maxim = iter_items::maxim(&input_vec); 
     let bad_guys = String::from("cgijklmnopqsuvwxz");
     let mut vec_index = 0;
@@ -42,7 +43,7 @@ pub fn longest_valid_item(mut input_vec: Vec<&str>) -> &str {
         vec_index += 1;
     }
     println!("{}", maxim);
-    "i will handle it"
+    maxim.to_string() 
 }
 
 #[cfg(test)]
