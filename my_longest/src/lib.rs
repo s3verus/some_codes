@@ -61,4 +61,22 @@ mod tests {
         let input_vec = vec!["bat"];
         assert_eq!("bat", longest_valid_item(input_vec));
     }
+
+    #[test]
+    fn empty_vec() {
+        let input_vec = vec![""];
+        assert_eq!("", longest_valid_item(input_vec));
+    }
+
+    #[test]
+    fn some_invalid_str_in_vec() {
+        let input_vec = vec!["cat", "bat", "cate"];
+        assert_eq!("bat", longest_valid_item(input_vec));
+    }
+
+    #[test]
+    fn last_one_not_large_one() {
+        let input_vec = vec!["bat", "bate", "tad"];
+        assert_eq!("bate", longest_valid_item(input_vec));
+    }
 }
