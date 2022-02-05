@@ -1,11 +1,6 @@
 mod work_with_vec {
     pub mod iter_items {
-//    let maxim = input_vec.iter().max();
-//    let maxim = match maxim {
-//        Some(max) => max,
-//        None      => "Vector is empty",
-//    };
-        pub fn maxim<'a>(input_vec: &'a Vec<&str>) -> &'a str {
+        pub fn _maxim<'a>(input_vec: &'a Vec<&str>) -> &'a str {
             // get vector of &str and return &str with maximum len
             let mut maxim = "";
             let mut maxim_len = 0;
@@ -17,13 +12,21 @@ mod work_with_vec {
             }
             maxim
         }
+        pub fn better_than_maxim<'a>(input_vec: &'a Vec<&str>) -> &'a str {
+            // using iter for find maximum len
+            match input_vec.iter().max_by_key(|x| x.len()) {
+                Some(x) => x,
+                None => "",
+            }
+        }
     }
 }
 
 use crate::work_with_vec::iter_items;
 
+// goes wrong with 'catayoun, homayoun, bat, cat, cate'
 pub fn longest_valid_item(mut input_vec: Vec<&str>) -> String {
-    let mut maxim = iter_items::maxim(&input_vec); 
+    let mut maxim = iter_items::better_than_maxim(&input_vec); 
     let bad_guys = String::from("cgijklmnopqsuvwxz");
     let mut vec_index = 0;
     let mut iner_count = 0;
@@ -35,7 +38,7 @@ pub fn longest_valid_item(mut input_vec: Vec<&str>) -> String {
                 // find index of maxim and remove
                 let index = input_vec.iter().position(|x| *x == maxim).unwrap();
                 input_vec.remove(index);
-                maxim = iter_items::maxim(&input_vec);
+                maxim = iter_items::better_than_maxim(&input_vec);
                 break;
             }
             iner_count += 1;
